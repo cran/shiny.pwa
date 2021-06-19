@@ -1,17 +1,17 @@
 #' Adds PWA support. Takes care of all the support required for browsers to
-#' recognise the application as a Progressive Web app.
+#' recognize the application as a Progressive Web app.
 #'
 #' @param domain The base URL where the app is hosted
 #' @param title The title of your Shiny app
 #' @param output Relative folder where to create the service worker file.
 #'    Usually corresponds to the folder used by shiny to serve static files,
 #'    this folder must exist and is usually the www folder of your shiny project.
-#' @param icon Icon Path to be used for the app. Size should be 512x512px.
-#'    If left NULL a default icon is provided.
+#' @param icon Icon path to be used for the app, relative to the project root.
+#'    Recommended size is 512x512px. If left NULL a default icon is provided.
 #' @param color Color of the app. Used to color the browser
 #'    elements when the pwa is installed.
-#' @param offline_template Path to the offline template you want to use.
-#'    If left NULL the default template is used.
+#' @param offline_template Path to the offline template you want to use, relative
+#'    to the project root folder. If left NULL the default template is used.
 #' @param offline_message When using the default offline page template
 #'    defines the message to be displayed.
 #'
@@ -64,5 +64,5 @@ pwa <- function(domain,
 
   shiny::addResourcePath("pwa", paste0(tempdir(), "/www/pwa"))
 
-  loadDependencies(icon, title, color, location)
+  loadDependencies(title, "pwa/icon.png", color, location)
 }
